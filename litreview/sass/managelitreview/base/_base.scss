@@ -1,0 +1,61 @@
+html {
+    // 10px div by def of 16px
+    font-size: 100%;
+
+}
+body {
+   #box-sizing: border-box;
+    background: $colour-white;
+    margin: auto;
+    font-size: 1rem;
+}
+figure{
+  display: flex;
+  margin:0;
+}
+h2 {
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-left:2rem;
+  margin-top:2rem;
+}
+.invalid{
+  color:$colour-invalid;
+}
+a {
+  text-decoration: none;
+  color: $colour-accent;
+
+
+  &--active {
+    color: $colour-secondary;
+
+    &:hover {
+      cursor: default;
+      color: $colour-secondary;
+    }
+  }
+}
+::-webkit-scrollbar-track {
+    background-color: $colour-invalid;
+
+}
+
+::-webkit-scrollbar {
+    height:0.4rem;
+    background-color: $colour-accent;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $colour-accent;
+    border-radius: 0.3rem;
+
+}
+
+@media screen and (max-width: 1024px){
+  body {
+    width: 100%;
+  }
+}

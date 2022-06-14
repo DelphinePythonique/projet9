@@ -1,0 +1,26 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LitReview</title>
+    <link rel="stylesheet" href="{%  static 'managelitreview/css/style.css' %}">
+</head>
+<body>
+<header>
+     <img src="" />
+    <nav>
+        {% if user.is_authenticated %}
+            <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+        {% endif %}
+
+    </nav>
+</header>
+<main>
+{% block content %} {%  endblock %}
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

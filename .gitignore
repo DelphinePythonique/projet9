@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/litreview/litreview/settings.py
+/litreview/litreview.sqlite3
