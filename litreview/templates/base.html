@@ -3,24 +3,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>LitReview</title>
-    <link rel="stylesheet" href="{%  static 'managelitreview/css/style.css' %}">
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+    <link rel="stylesheet" href="{%  static 'css/style.css' %}">
 </head>
 <body>
-<header>
-     <img src="" />
-    <nav>
-        {% if user.is_authenticated %}
-            <p>Vous êtes connecté en tant que {{ request.user }}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
-        {% endif %}
-
-    </nav>
-</header>
-<main>
-{% block content %} {%  endblock %}
-</main>
-<footer>
-
-</footer>
+<div class="container">
+    <header>
+        {% include '_header.html' %}
+    </header>
+    <main >
+        {% block content %} {%  endblock %}
+    </main>
+    <footer>
+         {% include '_footer.html' %}
+    </footer>
+       {%  block javascript %}
+            <script src="{%  static 'js/materialize.js' %}"></script>
+           <script >
+         M.AutoInit();
+            </script>
+        {% endblock %}
+</div>
 </body>
 </html>

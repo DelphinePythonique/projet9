@@ -4,18 +4,18 @@ from django.contrib.auth import  login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 
-from . import forms
 
 
+"""
 def logout_user(request):
     logout(request)
     return redirect('login')
-
+"""
 
 def signup_page(request):
-    form = forms.SignupForm()
+    form = UserCreationForm()
     if request.method == 'POST':
-        form = forms.SignupForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             # auto-login user
