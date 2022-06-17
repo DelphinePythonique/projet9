@@ -1,0 +1,43 @@
+{%  load static %}
+<div class="container card-panel hoverable">
+<div class="row">
+       <div class="col 12">
+            {% if ticket.user == user  %}
+            You are published a ticket
+            {% endif %}
+       </div>
+   </div>
+  <div class="row">
+        <div class="col 12 right">
+            {{ ticket.time_created}}
+        </div>
+   </div>
+    <div class="row">
+        <div class="col 12">
+            {{ ticket.title}}
+        </div>
+   </div>
+   <div class="row">
+        <div class="col 12">
+            {{ ticket.description}}
+        </div>
+   </div>
+   <div class="row">
+        <div class="col 12">
+            {% if ticket.image %}
+                <img class="responsive-img" src="{% static  ticket.image.url  %}" alt="{{ ticket.title }}'s image" />
+            {% endif %}
+        </div>
+   </div>
+  {% if ticket.user == user  %}
+     <div class="row">
+        <div class="col 12 right">
+            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:delete_ticket' ticket.id %}">Delete</a>
+        </div>
+         <div class="col 12 right">
+            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:update_ticket' ticket.id %}">Update</a>
+        </div>
+
+    </div>
+  {% endif %}
+</div>

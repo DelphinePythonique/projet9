@@ -8,7 +8,6 @@
                 <li><a href="#">Flow</a></li>
                 <li><a href="#">Posts</a></li>
                 <li><a href="#">Subscription</a></li>
-
                 <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
          {% endif %}
       </ul>
@@ -16,8 +15,8 @@
       <ul id="nav-mobile" class="sidenav">
            {% if user.is_authenticated %}
                  <li><a href="#">Flow</a></li>
-                <li><a href="#">Posts</a></li>
-                <li><a href="#">Subscription</a></li>
+                 <li><a href="#">Posts</a></li>
+                 <li><a href="#">Subscription</a></li>
                  <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
            {% endif %}
       </ul>
