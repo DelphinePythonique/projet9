@@ -1,0 +1,38 @@
+{%  extends 'base.html' %}
+{%  load static %}
+{% block content %}
+{% if review %}
+    <p>Update review</p>
+{% else %}
+    <p>Create review</p>
+{%  endif %}
+<form action="" method="post"  enctype="multipart/form-data">
+{% csrf_token %}
+ <div class="container card-panel hoverable">
+    {{ ticket_form }}
+ </div>
+<div class="container card-panel hoverable">
+    <div class="row">
+        <div class="col 12 ">
+             {{ review_form }}
+        </div>
+    </div>
+    <div class="row ">
+    <div class="col 12 right">
+      <input class="waves-effect waves-light btn " type="submit" value="Send">
+    </div>
+</div>
+</div>
+
+</form>
+{% if ticket %}
+    <div class="row ">
+        <div class="col 12 ">
+            {% if ticket.image %}
+                <img class="responsive-img" src="{% static  ticket.image.url  %}" alt="{{ ticket.title }}'s image" />
+            {% endif %}
+        </div>
+   </div>
+{%  endif %}
+
+{% endblock content %}

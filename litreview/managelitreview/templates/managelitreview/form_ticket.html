@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+{%  load static %}
+{% block content %}
+{% if ticket %}
+    <p>Update ticket</p>
+{% else %}
+    <p>Create ticket</p>
+{%  endif %}
+<form action="" method="post"  enctype="multipart/form-data">
+{% csrf_token %}
+{{ form }}
+<input class="waves-effect waves-light btn" type="submit" value="Send">
+</form>
+{% if ticket %}
+    <div class="row">
+        <div class="col 12">
+            {% if ticket.image %}
+                <img class="responsive-img" src="{% static  ticket.image.url  %}" alt="{{ ticket.title }}'s image" />
+            {% endif %}
+        </div>
+   </div>
+{%  endif %}
+
+{% endblock content %}
