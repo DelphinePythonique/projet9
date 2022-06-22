@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Ticket, Review, UserFollows
+from .models import Ticket, Review
 
 
 class TicketAdmin(admin.ModelAdmin):
@@ -13,4 +13,4 @@ class ReviewAdmin(admin.ModelAdmin):
 
 admin.site.register(Ticket, TicketAdmin)
 admin.site.register(Review, ReviewAdmin)
-admin.site.register(UserFollows)
+

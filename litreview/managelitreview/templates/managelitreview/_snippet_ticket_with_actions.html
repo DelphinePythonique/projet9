@@ -1,0 +1,14 @@
+ <div class="container card-panel hoverable">
+  {% include "managelitreview/_snippet_ticket.html" %}
+  {% if ticket.user == user  %}
+     <div class="row">
+        <div class="col 12 right">
+            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:delete_ticket' ticket.id %}">Delete</a>
+        </div>
+         <div class="col 12 right">
+            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:update_ticket' ticket.id %}">Update</a>
+        </div>
+
+    </div>
+  {% endif %}
+</div>

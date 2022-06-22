@@ -5,10 +5,10 @@
           <img src="{% static 'images/logo.png' %}" alt="LitReview logo"></a>
       <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
-                <li><a href="#">Flow</a></li>
+                <li><a href="{% url 'managelitreview:home' %}">Flow</a></li>
                 <li><a href="{% url 'managelitreview:display_my_tickets' %}">Posts</a></li>
-                <li><a href="#">Subscription</a></li>
-                <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                <li><a href="{% url 'authentication:follow' %}">Subscription</a></li>
+                <li><a href="{% url 'authentication:logout' %}">Se déconnecter</a></li>
          {% endif %}
       </ul>
 
@@ -16,8 +16,8 @@
            {% if user.is_authenticated %}
                  <li><a href="#">Flow</a></li>
                  <li><a href="{% url 'managelitreview:display_my_tickets' %}">Posts</a></li>
-                 <li><a href="#">Subscription</a></li>
-                 <li><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                 <li><a href="{% url 'authentication:follow' %}">Subscription</a></li>
+                 <li><a href="{% url 'authentication:logout' %}">Se déconnecter</a></li>
            {% endif %}
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>

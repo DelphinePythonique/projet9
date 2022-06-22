@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <div class="container card-panel hoverable">
+              <form action="" method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input class="waves-effect waves-light btn" type="submit" value="Send">
+             </form>
+        </div>
+        <h3>Followed users</h3>
+        <div class="container card-panel hoverable">
+          <ul class="collection">
+            {% for link in followed %}
+                 <li class="collection-item">{{ link.followed_user.username }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <h3>Followers</h3>
+          <div class="container card-panel hoverable">
+            <ul class="collection">
+            {% for link in followers %}
+                 <li class="collection-item">{{ link.user.username }}</li>
+            {% endfor %}
+          </ul>
+          </div>
+    {% endblock content %}

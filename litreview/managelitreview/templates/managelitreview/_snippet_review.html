@@ -1,0 +1,35 @@
+{%  load static %}
+<div class="row">
+       <div class="col 12">
+            {% if review.user == user  %}
+            You are published a review
+            {% endif %}
+       </div>
+   </div>
+  <div class="row">
+        <div class="col 12 right">
+            {{ review.time_created}}
+        </div>
+   </div>
+    <div class="row">
+        <div class="col 6">
+            {{ review.headline}}
+        </div>
+        <div class="col 6">
+            {% with ''|center:review.rating as range %}
+
+            {%  for _ in range %}
+                *
+            {% endfor %}
+        {% endwith %}
+        </div>
+   </div>
+   <div class="row">
+        <div class="col 12">
+            {{ review.body}}
+        </div>
+   </div>
+ <div class="container card-panel hoverable">
+    {% include "managelitreview/_snippet_ticket.html" with ticket=review.ticket %}
+
+ </div>

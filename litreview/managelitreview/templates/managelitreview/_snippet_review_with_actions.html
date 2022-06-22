@@ -1,0 +1,14 @@
+<div class="container card-panel hoverable">
+ {% include "managelitreview/_snippet_review.html" %}
+  {% if review.user == user  %}
+     <div class="row">
+        <div class="col 12 right">
+            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:delete_review' review.id %}">Delete</a>
+        </div>
+         <div class="col 12 right">
+            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:update_review' review.id %}">Update</a>
+        </div>
+
+    </div>
+  {% endif %}
+</div>
