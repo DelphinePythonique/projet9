@@ -1,6 +1,6 @@
 <div class="container card-panel hoverable">
  {% include "managelitreview/_snippet_review.html" %}
-  {% if review.user == user  %}
+  {% if review.user == user and update_authorized  %}
      <div class="row">
         <div class="col 12 right">
             <a class="waves-effect waves-light btn" href="{% url 'managelitreview:delete_review' review.id %}">Delete</a>

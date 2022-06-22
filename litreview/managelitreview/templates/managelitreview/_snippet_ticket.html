@@ -2,7 +2,9 @@
 <div class="row">
        <div class="col 12">
             {% if ticket.user == user  %}
-            You are published a ticket
+                    You have published a ticket
+            {% else %}
+                {{ ticket.user|title }} request a review
             {% endif %}
        </div>
    </div>

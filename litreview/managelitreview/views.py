@@ -1,7 +1,7 @@
 from itertools import chain
 
 from django.contrib.auth.decorators import login_required
-from django.db.models import Subquery
+from django.db.models import Subquery, OuterRef, Exists
 
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -11,17 +11,22 @@ from .forms import TicketForm, ReviewForm
 
 @login_required
 def home(request):
-    """
-    followed_users = UserFollows.objects.Filter(user=request.user)
-    tickets = models.Ticket.objects.filter(user=Subquery(followed_users.values('followed_user')))
+    followed_users = [f.followed_user for f in request.user.following.all()]
+    followed_users.append(request.user)
+    review_by_actif_user = models.Review.objects.filter(
+        ticket=OuterRef('pk'),
+        user=request.user
+    )
+    tickets = models.Ticket.objects.filter(user__in=followed_users).annotate(review_by_actif_user=Exists(review_by_actif_user))
     ticket_with_type = [{"type": "ticket", "item": ticket} for ticket in tickets]
-    reviews = models.Review.objects.filter(user=Subquery(followed_users.values('followed_user')))
+    reviews = models.Review.objects.filter(user__in=followed_users)
     review_with_type = [{"type": "review", "item": review} for review in reviews]
     posts = ticket_with_type + review_with_type
     posts_sorted_datetime = sorted(posts, key=lambda post: post["item"].time_created, reverse=True)
     posts = sorted(posts_sorted_datetime, key=lambda post: post["type"])
-"""
-    return render(request, "managelitreview/home.html", context={"posts": posts})
+
+    return render(request, "managelitreview/home.html", context={"posts": posts,
+                                                                 'update_authorized': False})
 
 
 @login_required
@@ -35,7 +40,10 @@ def display_my_posts(request):
     posts = ticket_with_type + review_with_type
     posts_sorted_datetime = sorted(posts, key=lambda post: post["item"].time_created, reverse=True)
     posts = sorted(posts_sorted_datetime, key=lambda post: post["type"])
-    return render(request, "managelitreview/posts.html", context={"posts": posts})
+    return render(request, "managelitreview/posts.html", context={
+        "posts": posts,
+        'update_authorized': True
+    })
 
 
 @login_required
@@ -81,7 +89,7 @@ def delete_ticket(request, ticket_id):
 
 
 @login_required
-def create_review(request):
+def create_review_with_ticket(request):
     if request.method == "POST":
         ticket_form = TicketForm(request.POST, request.FILES)
         review_form = ReviewForm(request.POST)
@@ -100,20 +108,20 @@ def create_review(request):
         review_form = ReviewForm()
     return render(
         request,
-        "managelitreview/form_review.html",
+        "managelitreview/form_review_with_ticket.html",
         {"ticket_form": ticket_form, "review_form": review_form},
     )
 
 
 @login_required
-def delete_review(request, ticket_id):
+def delete_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     review.delete()
     return redirect("managelitreview:home")
 
 
 @login_required
-def update_review(request, review_id):
+def update_review_with_ticket(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     ticket = review.ticket
     review_form = ReviewForm(instance=review)
@@ -128,8 +136,8 @@ def update_review(request, review_id):
 
     return render(
         request,
-        "managelitreview/form_review.html",
-        {"review_form": review_form, "ticket_form":ticket_form, "review": review},
+        "managelitreview/form_review_with_ticket.html",
+        {"review_form": review_form, "ticket_form": ticket_form, "review": review},
     )
 
 @login_required
@@ -138,4 +146,21 @@ def display_review(request, review_id):
     return render(request, "managelitreview/display_review.html", {"review": review})
 
 
-
+@login_required
+def create_review(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect("managelitreview:display_ticket", ticket.id)
+    else:
+        review_form = ReviewForm()
+    return render(
+        request,
+        "managelitreview/form_review.html",
+        {"ticket": ticket, "review_form": review_form},
+    )

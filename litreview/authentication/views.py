@@ -28,12 +28,7 @@ def signup_page(request):
 
 def follow_user(request):
     form = SearchUserForm()
-    followed = UserFollows.objects.filter(
-                user=request.user
-            )
-    followers = UserFollows.objects.filter(
-        followed_user=request.user
-    )
+
     if request.method == "POST":
         form = SearchUserForm(request.POST)
         if form.is_valid():
@@ -56,6 +51,5 @@ def follow_user(request):
     return render(request, "authentication/follow.html",
                   {
                       "form": form,
-                      "followed": followed,
-                      "followers": followers,
+
                   })

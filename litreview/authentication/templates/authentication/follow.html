@@ -10,16 +10,16 @@
         <h3>Followed users</h3>
         <div class="container card-panel hoverable">
           <ul class="collection">
-            {% for link in followed %}
-                 <li class="collection-item">{{ link.followed_user.username }}</li>
+            {% for followed in user.following.all %}
+                 <li class="collection-item">{{ followed.followed_user.username }}</li>
             {% endfor %}
           </ul>
         </div>
         <h3>Followers</h3>
           <div class="container card-panel hoverable">
             <ul class="collection">
-            {% for link in followers %}
-                 <li class="collection-item">{{ link.user.username }}</li>
+            {% for following in user.followed_by.all %}
+                 <li class="collection-item">{{ following.user.username }}</li>
             {% endfor %}
           </ul>
           </div>
