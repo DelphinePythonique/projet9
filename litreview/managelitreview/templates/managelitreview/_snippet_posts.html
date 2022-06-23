@@ -1,7 +1,8 @@
     {%  for post in posts %}
-        {% if post.type == 'ticket' %}
-            {% include "managelitreview/_snippet_ticket_with_actions.html" with ticket=post.item %}
-        {% elif  post.type == 'review' %}
-           {% include "managelitreview/_snippet_review_with_actions.html" with review=post.item %}
+        {% if post.post_type == 'TICKET' %}
+            {%   include "managelitreview/_snippet_ticket_with_actions.html" with ticket=post %}
+        {% elif  post.post_type == 'REVIEW' %}
+
+           {% include "managelitreview/_snippet_review_with_actions.html" with review=post %}
         {% endif %}
     {% endfor %}

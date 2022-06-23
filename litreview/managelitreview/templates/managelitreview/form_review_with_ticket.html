@@ -10,8 +10,6 @@
 {% csrf_token %}
  <div class="container card-panel hoverable">
       {{ ticket_form }}
-
-
      {% if review.ticket %}
         <div class="row ">
             <div class="col 12 ">
@@ -25,7 +23,18 @@
 <div class="container card-panel hoverable">
     <div class="row">
         <div class="col 12 ">
-             {{ review_form }}
+
+            {% for field in review_form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
         </div>
     </div>
     <div class="row ">
@@ -36,6 +45,4 @@
 </div>
 
 </form>
-
-
 {% endblock content %}

@@ -1,6 +1,6 @@
 {%  load static %}
 <div class="row">
-       <div class="col 12">
+       <div class="col s12">
             {% if review.user == user  %}
                     You have published a review
             {%  else %}
@@ -9,15 +9,15 @@
        </div>
    </div>
   <div class="row">
-        <div class="col 12 right">
+        <div class="right">
             {{ review.time_created}}
         </div>
    </div>
     <div class="row">
-        <div class="col 6">
+        <div class="col s6">
             {{ review.headline}}
         </div>
-        <div class="col 6">
+        <div class="col s6">
             {% with ''|center:review.rating as range %}
 
             {%  for _ in range %}
@@ -27,11 +27,11 @@
         </div>
    </div>
    <div class="row">
-        <div class="col 12">
+        <div class="col s12">
             {{ review.body}}
         </div>
    </div>
- <div class="container card-panel hoverable">
+ <div class=" card-panel hoverable">
     {% include "managelitreview/_snippet_ticket.html" with ticket=review.ticket %}
 
  </div>

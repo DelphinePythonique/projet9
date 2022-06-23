@@ -12,6 +12,12 @@ class Ticket(models.Model):
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def all_users(self):
+        all_users = [review.user for review in self.review_set.all()]
+        all_users.append(self.user)
+        return all_users
+
     def __str__(self):
         return f'{self.title}'
 
