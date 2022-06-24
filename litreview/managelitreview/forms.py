@@ -1,11 +1,13 @@
 from django import forms
 from django.forms import ClearableFileInput, Textarea, ChoiceField
-from django.forms.widgets import Select
+from django.forms.widgets import RadioSelect
+from django.utils.safestring import mark_safe
 
 from .models import Ticket, Review
 
 
 RATING_CHOICES = [("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5")]
+
 
 
 class TicketForm(forms.ModelForm):
@@ -19,8 +21,8 @@ class TicketForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
-    rating = ChoiceField(choices=RATING_CHOICES, widget=Select)
-    rating.widget.attrs.update({'class': 'left'})
+    rating = ChoiceField(choices=RATING_CHOICES, widget=RadioSelect())
+
 
     class Meta:
         model = Review

@@ -2,10 +2,10 @@
  {% include "managelitreview/_snippet_review.html" %}
   {% if review.user == user and update_authorized  %}
      <div class="row">
-        <div class="col s12 m12 right">
+        <div class=" right">
             <a class="waves-effect waves-light btn" href="{% url 'managelitreview:delete_review' review.id %}">Delete</a>
         </div>
-         <div class="col s12 m12 right">
+         <div class=" right">
             <a class="waves-effect waves-light btn" href="{% url 'managelitreview:update_review' review.id %}">Update</a>
         </div>
 

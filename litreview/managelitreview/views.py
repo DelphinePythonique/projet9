@@ -63,9 +63,13 @@ def home(request):
 
 @login_required
 def display_my_posts(request):
-
-    tickets = models.Ticket.objects.filter(user=request.user).annotate(
-        post_type=Value("TICKET")
+    review_by_actif_user = models.Review.objects.filter(
+        ticket=OuterRef("pk"), user=request.user
+    )
+    tickets = (
+        models.Ticket.objects.filter(user=request.user)
+        .annotate(post_type=Value("TICKET"))
+        .annotate(review_by_actif_user=Exists(review_by_actif_user))
     )
     reviews = models.Review.objects.filter(user=request.user).annotate(
         post_type=Value("REVIEW")

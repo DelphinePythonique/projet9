@@ -1,3 +1,10 @@
 .brand-logo img{
   height:  $navbar-height - 5px;
 }
+// Remove default Radio Buttons
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: relative;
+  opacity: 100;
+  pointer-events: none;
+}

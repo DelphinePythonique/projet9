@@ -8095,4 +8095,11 @@ input[type=range]::-ms-thumb {
   height: 59px;
 }
 
+[type=radio]:not(:checked),
+[type=radio]:checked {
+  position: relative;
+  opacity: 100;
+  pointer-events: none;
+}
+
 /*# sourceMappingURL=style.css.map */

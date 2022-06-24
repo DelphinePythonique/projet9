@@ -1,0 +1,20 @@
+{% for field in review_form %}
+                <tr>
+                     {% if field.html_name == 'rating' %}
+                            <th><label>{{ review_form.rating.label }}</label></th>
+                            <td>
+                                <ul > {{ field.errors }}
+                                    {% for radio in review_form.rating %}
+                                        <li style="display:inline">{{ radio }}</li>
+                                    {% endfor %}
+                                </ul>
+                          {% else %}
+                             <th>{{ field.label_tag }}</th>
+                             <td>{{ field }} {{ field.errors }}
+                    {% endif %}
+                    {% if field.help_text %}
+                        <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                        </td>
+                </tr>
+{% endfor %}
