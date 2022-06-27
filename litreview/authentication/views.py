@@ -1,7 +1,6 @@
 # authentication/views.py
 from django.conf import settings
-from django.contrib.auth import login, logout, get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, get_user_model
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from .forms import SignupForm, SearchUserForm
@@ -48,8 +47,10 @@ def follow_user(request):
             return redirect("authentication:follow")
     else:
         form = SearchUserForm()
-    return render(request, "authentication/follow.html",
-                  {
-                      "form": form,
-
-                  })
+    return render(
+        request,
+        "authentication/follow.html",
+        {
+            "form": form,
+        },
+    )

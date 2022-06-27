@@ -8,7 +8,7 @@ from django.forms import CharField
 class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', )
+        fields = ("username",)
 
 
 class SearchUserForm(forms.Form):
