@@ -61,10 +61,39 @@ Position yourself in the local directory in which you want to position the sourc
 ``` bash
  pip install -r requirements_dev.txt
 ```
-- 
+- duplicate litreview/litreview/settings/secret_settings.py for each of your environment like local.py, production.py for example
+- change key's values , for example
+``` python
+ SECRET_KEY = "django-insecure-ceciestmasecretkeymouahahh"
+ DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "../litreview.sqlite3",
+    }
+}
+```
+- in terminal, go to in directory which containt manage.py
+- generate database and populate it
+``` bash
+ python manage.py migrate
+```
+- create superuser
+``` bash
+ python manage.py createsuperuser
+```
+- answer questions
+- start development server 
+``` bash
+ python manage.py runserver 8000 --settings=litreview.settings.local
+```
 - generate the flake8-html report
 ``` bash
   flake8 --format=html --htmldir=flake-report --exclude=env
 ```
 
 ### <a name="use"></a>Uses
+
+#### Sign up
+
+#### Log in
+![log in](./litreview/static/images/login.gif)
