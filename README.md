@@ -94,6 +94,6 @@ Position yourself in the local directory in which you want to position the sourc
 ### <a name="use"></a>Uses
 
 #### Sign up
-
+![sign up](./litreview/static/images/signup.gif)
 #### Log in
 ![log in](./litreview/static/images/login.gif)
