@@ -12,6 +12,7 @@ from .forms import TicketForm, ReviewForm
 
 NUMBER_POST_PER_PAGE = 3
 
+
 def allowed_to_access_the_post(type_class):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -56,9 +57,9 @@ def home(request):
     )
     posts = sorted(posts_sorted_datetime, key=lambda post: post.post_type)
     paginator = Paginator(posts, NUMBER_POST_PER_PAGE)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    context = {'page_obj': page_obj, "update_authorized": False}
+    context = {"page_obj": page_obj, "update_authorized": False}
     return render(
         request,
         "managelitreview/home.html",
@@ -85,9 +86,9 @@ def display_my_posts(request):
     )
     posts = sorted(posts_sorted_datetime, key=lambda post: post.post_type)
     paginator = Paginator(posts, NUMBER_POST_PER_PAGE)
-    page_number = request.GET.get('page')
+    page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    context = {'page_obj': page_obj, "update_authorized": True}
+    context = {"page_obj": page_obj, "update_authorized": True}
     return render(
         request,
         "managelitreview/posts.html",

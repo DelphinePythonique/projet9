@@ -61,7 +61,7 @@ Position yourself in the local directory in which you want to position the sourc
 ``` bash
  pip install -r requirements_dev.txt
 ```
-
+- 
 - generate the flake8-html report
 ``` bash
   flake8 --format=html --htmldir=flake-report --exclude=env
