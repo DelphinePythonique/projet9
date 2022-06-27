@@ -1,7 +1,7 @@
 {%  load static %}
 <nav role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">
+      <a id="logo-container" href="{% url 'managelitreview:home' %}" class="brand-logo">
           <img src="{% static 'images/logo.png' %}" alt="LitReview logo"></a>
       <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
@@ -14,7 +14,7 @@
 
       <ul id="nav-mobile" class="sidenav">
            {% if user.is_authenticated %}
-                 <li><a href="#">Flow</a></li>
+                 <li><a href="{% url 'managelitreview:home' %}">Flow</a></li>
                  <li><a href="{% url 'managelitreview:display_my_tickets' %}">Posts</a></li>
                  <li><a href="{% url 'authentication:follow' %}">Subscription</a></li>
                  <li><a href="{% url 'authentication:logout' %}">Se déconnecter</a></li>
