@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.contrib.auth import login, get_user_model
 from django.db import IntegrityError
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from .forms import SignupForm, SearchUserForm
 from .models import UserFollows
 
@@ -54,3 +54,13 @@ def follow_user(request):
             "form": form,
         },
     )
+
+
+def unfollow_user(request, user_id):
+
+    user_followed = get_object_or_404(get_user_model(), pk=user_id)
+    link = get_object_or_404(
+        UserFollows, user=request.user, followed_user=user_followed
+    )
+    link.delete()
+    return redirect("authentication:follow")

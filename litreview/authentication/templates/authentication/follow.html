@@ -9,11 +9,15 @@
         </div>
         <h3>Followed users</h3>
         <div class="container card-panel hoverable">
-          <ul class="collection">
+          <table class="" ><tbody>
             {% for followed in user.following.all %}
-                 <li class="collection-item">{{ followed.followed_user.username }}</li>
+                <td>
+                    <td>{{ followed.followed_user.username }}</td>
+                    <td class="right"> <a class="waves-effect waves-light btn" href="{% url 'authentication:unfollow' followed.followed_user.id %}">unfollow</a></td>
+                </tr>
             {% endfor %}
-          </ul>
+          </tbody>
+          </table>
         </div>
         <h3>Followers</h3>
           <div class="container card-panel hoverable">

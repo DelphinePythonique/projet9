@@ -15,4 +15,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("signup/", views.signup_page, name="signup"),
     path("follow/", views.follow_user, name="follow"),
+    path("unfollow/<int:user_id>", views.unfollow_user, name="unfollow"),
 ]
