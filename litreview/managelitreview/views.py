@@ -2,6 +2,7 @@ from itertools import chain
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.db.models import OuterRef, Exists, Value
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,6 +10,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from .forms import TicketForm, ReviewForm
 
+NUMBER_POST_PER_PAGE = 3
 
 def allowed_to_access_the_post(type_class):
     def decorator(func):
@@ -53,11 +55,14 @@ def home(request):
         posts, key=lambda post: post.time_created, reverse=True
     )
     posts = sorted(posts_sorted_datetime, key=lambda post: post.post_type)
-
+    paginator = Paginator(posts, NUMBER_POST_PER_PAGE)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj, "update_authorized": False}
     return render(
         request,
         "managelitreview/home.html",
-        context={"posts": posts, "update_authorized": False},
+        context=context,
     )
 
 
@@ -79,11 +84,14 @@ def display_my_posts(request):
         posts, key=lambda post: post.time_created, reverse=True
     )
     posts = sorted(posts_sorted_datetime, key=lambda post: post.post_type)
-
+    paginator = Paginator(posts, NUMBER_POST_PER_PAGE)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj, "update_authorized": True}
     return render(
         request,
         "managelitreview/posts.html",
-        context={"posts": posts, "update_authorized": True},
+        context=context,
     )
 
 
