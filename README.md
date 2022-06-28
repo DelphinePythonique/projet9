@@ -95,9 +95,11 @@ Position yourself in the local directory in which you want to position the sourc
 
 #### Sign up
 ![sign up](./litreview/static/images/signup.gif)
-#### Log in
+#### Log infol
 ![log in](./litreview/static/images/login.gif)
 #### Create a ticket
 ![create ticket](./litreview/static/images/create_ticket.gif)
 #### Create a ticket with review
 ![create ticket with review](./litreview/static/images/create_ticket_with_review.gif)
+#### Follow a user
+![follow a user](./litreview/static/images/follow_user.gif)

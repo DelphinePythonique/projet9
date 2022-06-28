@@ -1,6 +1,7 @@
 # authentication/views.py
 from django.conf import settings
 from django.contrib.auth import login, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import SignupForm, SearchUserForm
@@ -25,6 +26,7 @@ def signup_page(request):
     return render(request, "authentication/signup.html", context={"form": form})
 
 
+@login_required
 def follow_user(request):
     form = SearchUserForm()
 
@@ -56,6 +58,7 @@ def follow_user(request):
     )
 
 
+@login_required
 def unfollow_user(request, user_id):
 
     user_followed = get_object_or_404(get_user_model(), pk=user_id)
