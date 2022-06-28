@@ -79,7 +79,7 @@ Position yourself in the local directory in which you want to position the sourc
 ```
 - create superuser
 ``` bash
- python manage.py createsuperuser
+ python manage.py createsuperuser --settings=litreview.settings.local
 ```
 - answer questions
 - start development server 
