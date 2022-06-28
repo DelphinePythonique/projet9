@@ -75,7 +75,7 @@ Position yourself in the local directory in which you want to position the sourc
 - in terminal, go to in directory which containt manage.py
 - generate database and populate it
 ``` bash
- python manage.py migrate --settings=litreview.settings.local
+ python manage.py migrate --settings=litreview.settings.local --run-syncdb
 ```
 - create superuser
 ``` bash
