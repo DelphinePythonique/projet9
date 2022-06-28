@@ -9,8 +9,8 @@
 <form action="" method="post"  enctype="multipart/form-data">
 {% csrf_token %}
  <div class="container card-panel hoverable">
-      {% if review.ticket %}
-       {% include "managelitreview/_snippet_ticket.html" with ticket=review.ticket %}
+      {% if ticket %}
+       {% include "managelitreview/_snippet_ticket.html" with ticket=ticket %}
     {%  endif %}
  </div>
 <div class="container card-panel hoverable">

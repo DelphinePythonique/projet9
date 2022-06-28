@@ -138,7 +138,7 @@ def display_ticket(request, ticket_id):
 def delete_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     ticket.delete()
-    return redirect("managelitreview:home")
+    return redirect("managelitreview:display_my_tickets")
 
 
 @login_required
@@ -171,7 +171,7 @@ def create_review_with_ticket(request):
 def delete_review(request, review_id):
     review = get_object_or_404(models.Review, id=review_id)
     review.delete()
-    return redirect("managelitreview:home")
+    return redirect("managelitreview:display_my_tickets")
 
 
 @login_required

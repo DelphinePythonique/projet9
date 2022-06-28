@@ -7,13 +7,23 @@
       </div>
  {% endif %}
   {% if ticket.user == user and update_authorized  %}
-        <div class="right">
-            <a class="waves-effect waves-light btn" href="{% url 'managelitreview:delete_ticket' ticket.id %}">Delete</a>
-        </div>
-         <div class="right">
+       <div class="right">
             <a class="waves-effect waves-light btn" href="{% url 'managelitreview:update_ticket' ticket.id %}">Update</a>
         </div>
-
+        <div class="right">
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal_delete">Delete</a>
+        </div>
+<!-- Modal Structure -->
+  <div id="modal_delete" class="modal">
+    <div class="modal-content">
+      <h4>Warning</h4>
+      <p>Are you sure to delete this ticket?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="{% url 'managelitreview:delete_ticket' ticket.id %}" class="modal-close waves-effect waves-green btn-flat">Delete</a>
+    </div>
+  </div>
   {% endif %}
   </div>
 </div>
