@@ -95,7 +95,7 @@ Position yourself in the local directory in which you want to position the sourc
 
 #### Sign up
 ![sign up](./litreview/static/images/signup.gif)
-#### Log infol
+#### Log in
 ![log in](./litreview/static/images/login.gif)
 #### Create a ticket
 ![create ticket](./litreview/static/images/create_ticket.gif)
@@ -103,3 +103,9 @@ Position yourself in the local directory in which you want to position the sourc
 ![create ticket with review](./litreview/static/images/create_ticket_with_review.gif)
 #### Follow a user
 ![follow a user](./litreview/static/images/follow_user.gif)
+#### Create review for an other user's book
+![create_review](./litreview/static/images/create_review.gif)
+#### Delete review 
+![delete_review](./litreview/static/images/delete_review.gif)
+#### Delete ticket
+same as review but with a ticket
