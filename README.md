@@ -92,7 +92,10 @@ The secret_settings file serves as a template for all environment-specific setti
 ``` bash
   flake8 --format=html --htmldir=flake-report --exclude=env
 ```
-
+- it is possible to update style into litreview/sass/_style.scss and run following command to refresh style.css
+``` bash
+  npm run sass
+```
 ### <a name="use"></a>Uses
 
 #### Sign up
