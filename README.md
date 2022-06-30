@@ -61,6 +61,10 @@ Position yourself in the local directory in which you want to position the sourc
 ``` bash
  pip install -r requirements_dev.txt
 ```
+
+The settings are in the files present in the directory: litreview/litreview/settings/. 
+The base.py file corresponds to the parameters common to all the environments: development, production, etc.
+The secret_settings file serves as a template for all environment-specific settings
 - duplicate litreview/litreview/settings/secret_settings.py for each of your environment like local.py, production.py for example
 - change key's values , for example
 ``` python
@@ -73,15 +77,13 @@ Position yourself in the local directory in which you want to position the sourc
 }
 ```
 - in terminal, go to in directory which containt manage.py
-- generate database and populate it
+- if you do not want use the default database, you can: 
+  - generate database and populate it
+  - create superuser -> answer questions
 ``` bash
  python manage.py migrate --settings=litreview.settings.local --run-syncdb
-```
-- create superuser
-``` bash
  python manage.py createsuperuser --settings=litreview.settings.local
 ```
-- answer questions
 - start development server 
 ``` bash
  python manage.py runserver 8000 --settings=litreview.settings.local
@@ -96,6 +98,9 @@ Position yourself in the local directory in which you want to position the sourc
 #### Sign up
 ![sign up](./litreview/static/images/signup.gif)
 #### Log in
+for the default database, some user are populated: 
+root => username: root / password: litreview
+for the others users, username is display and password is litreview
 ![log in](./litreview/static/images/login.gif)
 #### Create a ticket
 ![create ticket](./litreview/static/images/create_ticket.gif)

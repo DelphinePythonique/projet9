@@ -136,8 +136,11 @@ def display_ticket(request, ticket_id):
 @login_required
 @allowed_to_access_the_post(models.Ticket)
 def delete_ticket(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    ticket.delete()
+    print('request.meth', request.method)
+    if request.method == "DELETE":
+        print('ca marche!!!')
+        ticket = get_object_or_404(models.Ticket, id=ticket_id)
+        ticket.delete()
     return redirect("managelitreview:display_my_tickets")
 
 
