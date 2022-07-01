@@ -1,4 +1,5 @@
-from .base import *
+from .base import *  # noqa type:ignore
+from .base import INSTALLED_APPS, BASE_DIR
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
